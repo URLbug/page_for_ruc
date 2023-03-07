@@ -1,11 +1,21 @@
 from __init__ import app
 
+from database import db
+
 from home import home
 
+import subprocess
 
-# db.create_all()
 
+# create database
+db.create_all()
+
+#register bluprint
 app.register_blueprint(home)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9000, debug=True)
+    files = "amber_telegram.py"
+    
+    subprocess.Popen(args=["start", "python", files], shell=True, stdout=subprocess.PIPE)
+    
+    app.run('0.0.0.0', 9000, True)

@@ -13,16 +13,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class User(db.Model):
-    def __init__(self, username, email, password):
-        self.username = username
+    def __init__(self, first_name, last_name, email, about):
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email
-        self.password = password
-
+        self.about = about
     
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(100), unique=True, nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    about = db.Column(db.String(1000), unique=True, nullable=False)
 
     def __repr__(self) -> str:
         return f'<User {self.username}>'
